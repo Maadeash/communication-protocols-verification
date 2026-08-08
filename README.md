@@ -192,4 +192,4 @@ This project demonstrates a complete I2C design and verification flow, from RTL 
 
 ## Conclusion
 
-Designed and verified an I2C Master-Slave communication system using Verilog HDL and SystemVerilog. The verification environment incorporated randomized read/write transactions,functional coverage,assertions and scoreboard-based checking. Simulation results demonstrated successful address recognition,data transfer,ACK handling and readback verification across multiple transactions.
+Designed and verified an I2C Master-Slave communication system using Verilog HDL and UVM. The verification environment incorporated randomized read/write transactions,functional coverage,assertions and scoreboard-based checking. Simulation results demonstrated successful address recognition,data transfer,ACK handling and readback verification across multiple transactions.
