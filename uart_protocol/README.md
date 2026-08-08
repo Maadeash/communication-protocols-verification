@@ -117,6 +117,10 @@ The design was implemented using the following tools:
 
 <img width="1600" height="760" alt="WhatsApp Image 2026-08-08 at 10 41 55 AM" src="https://github.com/user-attachments/assets/204cfe02-4af9-4556-ab8b-043920867553" />
 
+### Coverage Report
+
+<img width="1486" height="571" alt="Screenshot 2026-08-08 181037" src="https://github.com/user-attachments/assets/93b3ab18-d8f1-4042-b30c-f8004fbe7352" />
+
 
 ### Synthesis Result
 
