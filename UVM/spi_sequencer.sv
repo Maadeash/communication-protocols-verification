@@ -1,12 +1,6 @@
-// ============================================================================
-// spi_sequencer.sv
-// Standard parameterized sequencer feeding spi_seq_item to the driver.
-// ============================================================================
-
 class spi_sequencer extends uvm_sequencer #(spi_seq_item);
   `uvm_component_utils(spi_sequencer)
-
-  function new(string name, uvm_component parent);
-    super.new(name, parent);
+  function new(string name,uvm_component parent);
+    super.new(name,parent);
   endfunction
 endclass
