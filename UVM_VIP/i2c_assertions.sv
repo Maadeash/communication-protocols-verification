@@ -1,11 +1,4 @@
-// ============================================================================
-// i2c_assertions.sv
-// Protocol sanity checks, kept as plain SVA outside the UVM class hierarchy
-// so they run continuously against the bus regardless of which sequence is
-// active. Instantiated directly in tb_top.sv against the same vif.
-// ============================================================================
 module i2c_assertions(i2c_if vif);
-
   property p_enable_reset;
     @(posedge vif.clk)
     vif.rst |-> (vif.enable==0);
@@ -21,5 +14,4 @@ module i2c_assertions(i2c_if vif);
 
   assert property(p_start_condition)
     else $error("START CONDITION FAILED");
-
 endmodule
