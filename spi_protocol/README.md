@@ -176,6 +176,26 @@ The received data is compared automatically against expected values for each tra
 * `spi_test.sv`
 * `spi_tb_top.sv`
 
+## How to Run
+
+### Setup Environment
+
+```
+source /path/to/synopsys_setup.sh 
+```
+
+### Compile
+
+```
+vcs -full64 -sverilog -ntb_opts uvm -debug_access+all -kdb -f filelist.f -l compile.log
+```
+
+### Simulate
+
+```
+./simv +UVM_TESTNAME=spi_random_test -cm line+cond+fsm+tgl+branch -l sim.log
+```
+
 
 # Synthesized and Implemented Design(Using Vivado)
 
