@@ -12,13 +12,29 @@ A collection of UVM-based functional verification testbenches for common serial 
 
 ## Repository Structure
 
-Each protocol folder is self-contained and follows a similar structure:
-<protocol>/
-├── RTL/ # Design under test (DUT)
-├── UVM_VIP/ # UVM testbench components (agent, driver, monitor, scoreboard, etc.)
-├── Coverage_Report/ # Functional coverage reports (HTML)
-├── filelist.f # Compile file list
-└── README.md # Protocol-specific details
+communication-protocols-verification/
+├── uart_protocol/
+│   ├── RTL/                # Design under test (DUT)
+│   ├── UVM_VIP/             # UVM testbench components (agent, driver, monitor, scoreboard, etc.)
+│   ├── Coverage_Report/      # Functional coverage reports (HTML)
+│   ├── filelist.f            # Compile file list
+│   └── README.md             # Protocol-specific details
+│
+├── spi_protocol/
+│   ├── RTL/
+│   ├── UVM_VIP/
+│   ├── Coverage_Report/
+│   ├── filelist.f
+│   └── README.md
+│
+├── i2c-protocol/
+│   ├── RTL/
+│   ├── UVM_VIP/
+│   ├── Coverage_Report/
+│   ├── filelist.f
+│   └── README.md
+│
+└── README.md              # This file — top-level overview
 
 ## Verification Methodology
 
