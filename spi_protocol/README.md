@@ -196,24 +196,16 @@ vcs -full64 -sverilog -ntb_opts uvm -debug_access+all -kdb -f filelist.f -l comp
 ./simv +UVM_TESTNAME=spi_random_test -cm line+cond+fsm+tgl+branch -l sim.log
 ```
 
-
-# Synthesized and Implemented Design(Using Vivado)
-
-<img width="1485" height="519" alt="image" src="https://github.com/user-attachments/assets/9ce50914-d6b8-44b2-bc85-048e9b389f4d" />
-
----
-
 ## Synopsys VCS Coverage Results
 
-<img width="1600" height="835" alt="image" src="https://github.com/user-attachments/assets/663a8bc1-cb25-41e4-a312-1202394bee9d" />
+<img width="1600" height="835" alt="image" src="https://github.com/user-attachments/assets/491d9222-e510-4658-bdd0-a66234c10d77" />
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/9eff887f-25f4-4bb0-b475-ef1fdb284f0e" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/261d4e62-6457-4d37-83aa-f7c7df795597" />
 
 ---
 
 ## Coverage Report
 
-<img width="1440" height="700" alt="image" src="https://github.com/user-attachments/assets/20eeaa85-0f1c-4396-9687-b6d66c80698c" />
 
 ---
 
