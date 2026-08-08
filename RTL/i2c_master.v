@@ -1,7 +1,3 @@
-// ============================================================================
-// i2c_master.sv
-// I2C master DUT. Behavior preserved exactly from the original custom TB.
-// ============================================================================
 module master(
   input clk,rst,
   input [7:0]w_data,
