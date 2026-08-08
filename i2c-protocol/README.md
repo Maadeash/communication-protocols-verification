@@ -200,6 +200,7 @@ This project demonstrates a complete I2C design and verification flow, from RTL 
 
 ## Coverage Report
 
+<img width="1362" height="624" alt="Screenshot 2026-08-08 182558" src="https://github.com/user-attachments/assets/8f9447e9-83b5-40c6-96a9-499ea11f3469" />
 
 
 ---
