@@ -1,13 +1,3 @@
-// ============================================================================
-// i2c_slave.sv
-// I2C slave DUT. Behavior preserved exactly from the original custom TB.
-// NOTE: see README.md "Known RTL limitation" — this slave always ACKs at
-// negedge scl during ack1 even on an address mismatch, and has no recovery
-// path out of ack1 for a mismatched address. Not modified here since the
-// VIP's transaction constraint always targets SLAVE_ADDR (matches the
-// original testbench's implicit assumption) and DUT behavior must stay
-// intact per the conversion brief.
-// ============================================================================
 module slave(
   inout sda,
   inout scl
@@ -21,7 +11,6 @@ module slave(
   reg [2:0]state;
   localparam SLAVE_ADDR=7'b0101010;
   reg [7:0]recv_address;
-
   localparam read_addr=0;
   localparam ack1=1;
   localparam read_data=2;
