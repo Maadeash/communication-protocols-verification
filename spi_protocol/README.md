@@ -208,7 +208,6 @@ vcs -full64 -sverilog -ntb_opts uvm -debug_access+all -kdb -f filelist.f -l comp
 
 <img width="1440" height="700" alt="Screenshot 2026-08-08 184845" src="https://github.com/user-attachments/assets/48ef40be-1e8c-4876-a455-c093bcc26dcb" />
 
-
 ---
 
 ## Tools Used
