@@ -81,6 +81,26 @@ The coverage model includes:
 * Corner cases covered: 100%
 * Data bins covered: 100%
 
+## How to Run
+
+### Setup Environment
+
+```
+source /path/to/synopsys_setup.sh 
+```
+
+### Compile
+
+```
+vcs -full64 -sverilog -ntb_opts uvm -debug_access+all -kdb -f filelist.f -l compile.log
+```
+
+### Simulate
+
+```
+./simv +UVM_TESTNAME=uart_random_test -cm line+cond+fsm+tgl+branch -l sim.log
+```
+
 ## Physical Design Flow
 
 The design was implemented using the following tools:
