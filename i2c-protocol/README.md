@@ -168,19 +168,22 @@ Expected data must match the read-back data from the slave.
 ## How to Run
 
 ### Setup Environment
-\`\`\`bash
-source /path/to/synopsys_setup.sh   # source VCS/Verdi tool setup
-\`\`\`
+
+```
+source /path/to/synopsys_setup.sh 
+```
 
 ### Compile
-\`\`\`bash
+
+```
 vcs -full64 -sverilog -ntb_opts uvm -debug_access+all -kdb -f filelist.f -l compile.log
-\`\`\`
+```
 
 ### Simulate
-\`\`\`bash
+
+```
 ./simv +UVM_TESTNAME=i2c_full_test -cm line+cond+fsm+tgl+branch -l sim.log
-\`\`\`
+```
 
 ## Result
 
