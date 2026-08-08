@@ -1,182 +1,181 @@
-# SPI Master-Slave RTL Design and Functional Verification using Verilog,SystemVerilog
+# SPI Master-Slave RTL Design and UVM-Based Functional Verification
 
 ## Overview
 
-This project implements a full-duplex SPI (Serial Peripheral Interface) communication system consisting of SPI Master and SPI Slave modules designed in Verilog HDL. The design was verified using a layered SystemVerilog verification environment featuring assertions,functional coverage,scoreboard-based checking and self-checking testbench architecture.
+This project implements a full-duplex SPI (Serial Peripheral Interface) communication system with separate SPI Master and SPI Slave RTL blocks designed in Verilog HDL. The design was verified using a layered UVM-based SystemVerilog verification environment with constrained-random stimulus, scoreboard-based checking, functional coverage, and SystemVerilog Assertions (SVA).
 
----
+The complete verification flow was used to validate master-to-slave and slave-to-master data transfer behavior, chip-select handling, and protocol correctness.
 
 ## Project Highlights
 
-- SPI Master RTL Design
-- SPI Slave RTL Design
-- Full-Duplex Communication
-- SCLK Generation Logic
-- MOSI and MISO Data Transfer
-- Chip Select (CS) Control
-- SystemVerilog Verification Environment
-- Functional Coverage Collection
-- Cross Coverage Implementation
-- SystemVerilog Assertions (SVA)
-- Scoreboard-Based Data Checking
-- Mailbox Communication
-- Synopsys VCS Simulation
-- Synopsys DVE Waveform Analysis
-
----
+* SPI Master RTL design
+* SPI Slave RTL design
+* Full-duplex serial communication
+* SCLK generation logic
+* MOSI and MISO data transfer
+* Chip Select (CS) control
+* UVM-based verification environment
+* Constrained-random transaction generation
+* Functional coverage collection
+* Cross coverage implementation
+* Assertion-based protocol checks
+* Scoreboard-based data comparison
+* Mailbox communication
+* Synopsys VCS simulation
+* Synopsys DVE waveform analysis
 
 ## SPI Protocol
 
-SPI uses four signals:
+SPI uses four main signals:
 
-| Signal | Description |
-|----------|----------|
-| MOSI | Master Out Slave In |
-| MISO | Master In Slave Out |
-| SCLK | Serial Clock |
-| CS | Chip Select |
+| Signal | Description         |
+| ------ | ------------------- |
+| MOSI   | Master Out Slave In |
+| MISO   | Master In Slave Out |
+| SCLK   | Serial Clock        |
+| CS     | Chip Select         |
 
-Protocol Configuration:
+### Protocol Configuration
 
-- CPOL = 0
-- CPHA = 0
-- 8-bit Data Transfer
-- Full-Duplex Communication
-
----
+* CPOL = 0
+* CPHA = 0
+* 8-bit data transfer
+* Full-duplex communication
 
 ## RTL Architecture
 
 ### SPI Master
 
-The SPI Master performs:
+The SPI Master is responsible for:
 
-- Clock Generation
-- Chip Select Control
-- MOSI Transmission
-- MISO Reception
-- Transfer Completion Detection
+* Generating the serial clock
+* Controlling chip select
+* Transmitting data on MOSI
+* Receiving data on MISO
+* Detecting transfer completion
 
 ### SPI Slave
 
-The SPI Slave performs:
+The SPI Slave is responsible for:
 
-- MOSI Reception
-- MISO Transmission
-- Data Capture
-- Transfer Completion Detection
+* Receiving MOSI data
+* Driving MISO data
+* Capturing transmitted values
+* Supporting full-duplex transfer behavior
 
----
+## UVM Verification Environment
 
-## Verification Environment
-
-The design was verified using a layered SystemVerilog verification environment.
+The DUT was verified using a layered UVM testbench architecture.
 
 ### Verification Components
 
-- Interface
-- Transaction
-- Generator
-- Driver
-- Monitor
-- Scoreboard
-- Functional Coverage
-- Assertions
-- Testbench
+* Interface
+* Transaction
+* Sequence item
+* Sequencer
+* Driver
+* Monitor
+* Scoreboard
+* Coverage collector
+* Assertions
+* Environment
+* Test
 
 ### Verification Flow
 
-Generator
-
-↓
-
-Driver
-
-↓
-
-SPI DUT
-
-↓
-
-Monitor
-
-↓
-
-Scoreboard
-
----
+Generator → Driver → SPI DUT → Monitor → Scoreboard
 
 ## Functional Coverage
 
-Functional coverage was implemented using SystemVerilog covergroups.
+Functional coverage was implemented using SystemVerilog covergroups to ensure complete transaction visibility across the SPI data space.
 
 ### Coverage Points
 
 #### MASTER_TX
 
-- LOW Range
-- MID Range
-- HIGH Range
+* LOW range
+* MID range
+* HIGH range
 
 #### SLAVE_TX
 
-- LOW Range
-- MID Range
-- HIGH Range
+* LOW range
+* MID range
+* HIGH range
 
 #### Corner Cases
 
-- 0x00
-- 0xFF
-- 0xAA
-- 0x55
+* `0x00`
+* `0xFF`
+* `0xAA`
+* `0x55`
 
 #### Cross Coverage
 
-MASTER_TX × SLAVE_TX
+* `MASTER_TX × SLAVE_TX`
 
-This ensures complete verification of master-slave transaction combinations.
-
----
+The coverage report shows complete closure for the SPI coverage group, including all variables and cross bins. The report also indicates one test was used to generate the final result.
 
 ## Assertions
 
-The following SystemVerilog Assertions were implemented:
+SystemVerilog Assertions were implemented to verify core SPI protocol behavior.
 
-- CS remains HIGH during reset
-- DONE remains LOW during reset
-- SCLK remains LOW when CS is HIGH
-- CS returns HIGH after transaction completion
+### Example Checks
 
----
+* CS remains HIGH during reset
+* DONE remains LOW during reset
+* SCLK remains LOW when CS is HIGH
+* CS returns HIGH after transaction completion
 
-## Scoreboard Checks
+### Assertion Status
 
-The scoreboard verifies successful full-duplex communication.
+* PASS
 
-Checks performed:
+## Scoreboard
 
-```text
-MASTER_RX == SLAVE_TX
+The scoreboard verifies full-duplex data integrity between master and slave.
 
-SLAVE_RX == MASTER_TX
-```
+### Verification Checks
 
-All received data is automatically compared against expected values.
+* `MASTER_RX == SLAVE_TX`
+* `SLAVE_RX == MASTER_TX`
 
----
+The received data is compared automatically against expected values for each transaction.
 
 ## Simulation Results
 
-| Metric | Result |
-|----------|----------|
-| Functional Coverage | PASS |
-| Assertions | PASS |
-| Scoreboard | PASS |
-| Master Receive Check | PASS |
-| Slave Receive Check | PASS |
+| Metric               | Result |
+| -------------------- | ------ |
+| Functional Coverage  | PASS   |
+| Assertions           | PASS   |
+| Scoreboard           | PASS   |
+| Master Receive Check | PASS   |
+| Slave Receive Check  | PASS   |
 
----
+## Source Files
+
+### RTL Design
+
+* `spi_master.v`
+* `spi_slave.v`
+
+### Verification
+
+* `spi_if.sv`
+* `spi_pkg.sv`
+* `spi_seq_item.sv`
+* `spi_sequencer.sv`
+* `spi_sequences.sv`
+* `spi_driver.sv`
+* `spi_monitor.sv`
+* `spi_scoreboard.sv`
+* `spi_coverage.sv`
+* `spi_assertions.sv`
+* `spi_agent.sv`
+* `spi_env.sv`
+* `spi_test.sv`
+* `spi_tb_top.sv`
+
 
 # Synthesized and Implemented Design(Using Vivado)
 
@@ -186,46 +185,26 @@ All received data is automatically compared against expected values.
 
 ## Synopsys VCS Coverage Results
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/7d5cd2ec-a341-4a1e-a631-6878b4e65396" />
+<img width="1600" height="835" alt="image" src="https://github.com/user-attachments/assets/663a8bc1-cb25-41e4-a312-1202394bee9d" />
 
-
----
-
-## Synopsys DVE Waveform
-
-<img width="1600" height="852" alt="image" src="https://github.com/user-attachments/assets/b4461788-8252-4a04-a52c-063526fc13fb" />
-
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/9eff887f-25f4-4bb0-b475-ef1fdb284f0e" />
 
 ---
 
-## Source Files
+## Coverage Report
 
-### RTL Design
-
-- spi_master.v
-- spi_slave.v
-
-### Verification
-
-- spi_if.sv
-- spi_transaction.sv
-- spi_generator.sv
-- spi_driver.sv
-- spi_monitor.sv
-- spi_scoreboard.sv
-- spi_coverage.sv
-- spi_assertions.sv
-- tb_spi_vip.sv
+<img width="1440" height="700" alt="image" src="https://github.com/user-attachments/assets/20eeaa85-0f1c-4396-9687-b6d66c80698c" />
 
 ---
 
 ## Tools Used
 
-- Vivado
-- Synopsys VCS
+* Verilog HDL
+* SystemVerilog
+* UVM
+* Synopsys VCS
+* Synopsys DVE
 
----
+## Result
 
-## Conclusion
-
-A complete SPI Master-Slave communication system was designed using Verilog HDL and verified using a layered SystemVerilog verification environment. Verification included assertions,functional coverage,cross coverage,scoreboard-based checking and corner-case testing. Simulation results demonstrated successful full-duplex SPI communication and protocol compliance.
+This project demonstrates a complete SPI design and verification flow, from RTL implementation to a reusable UVM-based verification environment with full coverage closure and protocol validation.
