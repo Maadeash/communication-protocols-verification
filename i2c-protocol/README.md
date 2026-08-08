@@ -192,21 +192,15 @@ This project demonstrates a complete I2C design and verification flow, from RTL 
 
 ## Synopsys VCS Functional Coverage
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/8666c5c3-63f4-44a3-bfc5-74d1f51e64f1" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/0dd23256-945c-4f50-991d-70c857f86873" />
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/7af378fb-8b5d-4ded-b5d3-418c7f70a326" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/4d295c5a-b67e-4ab2-bd81-6920c05cb1ed" />
 
 ---
 
 ## Coverage Report
 
-<img width="1362" height="624" alt="image" src="https://github.com/user-attachments/assets/852c0cda-2598-4636-8268-9ddd0069e273" />
 
----
-
-## Synthesized design
-
-<img width="1565" height="728" alt="image" src="https://github.com/user-attachments/assets/0a7ba5f7-cedb-4711-8557-7aedbdcf07d8" />
 
 ---
 
