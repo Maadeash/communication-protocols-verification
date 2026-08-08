@@ -1,16 +1,3 @@
-// ============================================================================
-// spi_if.sv
-// DUT-facing interface. Same clocking blocks/modports as the original VIP.
-//
-// NOTE: both DRV and MON modports declare `rst` as plain `input rst` (not
-// `ref`, unlike the UART interface this VIP suite also contains). That means
-// `rst` cannot be driven through either modport-typed handle. The UVM driver
-// therefore also obtains an *unrestricted* `virtual spi_if` handle (see
-// uart_driver.sv's UART counterpart for contrast, and spi_driver.sv here)
-// purely to assert/deassert reset, exactly like the original testbench did
-// by writing `vif.rst` directly instead of through drv_cb.
-// ============================================================================
-
 interface spi_if(input logic clk);
   logic rst;
   logic start;
