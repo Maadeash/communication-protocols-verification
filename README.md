@@ -12,6 +12,11 @@ A collection of UVM-based functional verification testbenches for common serial 
 
 ## Repository Structure
 
+## Repository Structure
+
+Each protocol folder is self-contained and follows a similar structure:
+
+```
 communication-protocols-verification/
 ├── uart_protocol/
 │   ├── RTL/                # Design under test (DUT)
@@ -35,6 +40,7 @@ communication-protocols-verification/
 │   └── README.md
 │
 └── README.md              # This file — top-level overview
+```
 
 ## Verification Methodology
 
