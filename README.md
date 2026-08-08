@@ -1,255 +1,192 @@
-# I2C Master-Slave RTL Design and Functional Verification using Verilog and SystemVerilog
+# I2C Master-Slave RTL Design and UVM-Based Functional Verification
 
 ## Overview
 
-This project implements an I2C (Inter-Integrated Circuit) communication system consisting of a Master and Slave designed in Verilog HDL. The design supports both read and write operations using a 7-bit slave address and was verified using a layered SystemVerilog verification environment.
+This project implements an I2C communication system with separate Master and Slave RTL blocks designed in Verilog HDL. The design supports both read and write transactions using a 7-bit slave address and was verified using a layered UVM-based SystemVerilog verification environment.
 
-The verification environment includes randomized transaction generation,driver-monitor-scoreboard architecture,functional coverage collection and SystemVerilog Assertions (SVA).
-
----
+The verification flow includes transaction generation, driver-monitor-scoreboard architecture, functional coverage collection, and SystemVerilog Assertions (SVA) to validate protocol behavior and data integrity.
 
 ## Project Highlights
 
-- I2C Master RTL Design
-- I2C Slave RTL Design
-- 7-Bit Addressing
-- Read Transactions
-- Write Transactions
-- ACK Generation and Detection
-- Start and Stop Condition Handling
-- Bidirectional SDA Communication
-- SystemVerilog Verification Environment
-- Functional Coverage Collection
-- Assertions (SVA)
-- Scoreboard-Based Data Checking
-- Mailbox Communication
-- Synopsys VCS Simulation
-- Synopsys DVE Waveform Analysis
-
----
+* I2C Master RTL design
+* I2C Slave RTL design
+* 7-bit slave addressing
+* Read and write transaction support
+* Start and stop condition handling
+* ACK generation and detection
+* Bidirectional SDA communication
+* UVM-based verification environment
+* Constrained-random transaction generation
+* Scoreboard-based data checking
+* Functional coverage collection
+* Assertion-based protocol checks
+* Mailbox-based communication
+* Synopsys VCS simulation
+* Synopsys DVE waveform debug
 
 ## Protocol Configuration
 
-| Parameter | Value |
-|------------|------------|
-| Address Width | 7-bit |
-| Slave Address | 0x2A |
-| Communication | Read / Write |
-| Data Width | 8-bit |
-| Bus Signals | SDA,SCL |
-
----
+| Parameter         | Value        |
+| ----------------- | ------------ |
+| Address Width     | 7-bit        |
+| Slave Address     | 0x2A         |
+| Transaction Types | Read / Write |
+| Data Width        | 8-bit        |
+| Bus Signals       | SDA, SCL     |
 
 ## RTL Architecture
 
 ### Master
 
-The I2C Master performs:
+The I2C Master is responsible for:
 
-- Start Condition Generation
-- Slave Address Transmission
-- Read/Write Control
-- ACK Detection
-- Data Transmission
-- Data Reception
-- Stop Condition Generation
+* Generating the start condition
+* Sending the slave address
+* Selecting read or write operation
+* Detecting ACK from the slave
+* Writing data to the bus
+* Reading data from the bus
+* Generating the stop condition
 
 ### Slave
 
-The I2C Slave performs:
+The I2C Slave is responsible for:
 
-- Address Recognition
-- ACK Generation
-- Data Storage
-- Data Transmission
-- Read and Write Operation Handling
+* Detecting its assigned address
+* Generating ACK responses
+* Receiving write data
+* Driving read data back to the master
+* Handling both read and write transfers correctly
 
----
+## UVM Verification Environment
 
-## Verification Environment
-
-The DUT was verified using a layered SystemVerilog testbench.
+The DUT is verified using a layered UVM testbench architecture.
 
 ### Verification Components
 
-- Interface
-- Transaction Class
-- Generator
-- Driver
-- Monitor
-- Scoreboard
-- Functional Coverage
-- Assertions
+* Interface
+* Sequence item
+* Sequencer
+* Driver
+* Monitor
+* Scoreboard
+* Coverage collector
+* Assertions
+* Environment
+* Test
 
 ### Verification Flow
 
-Generator
-
-↓
-
-Driver
-
-↓
-
-I2C DUT
-
-↓
-
-Monitor
-
-↓
-
-Scoreboard
-
----
+Generator → Driver → DUT → Monitor → Scoreboard
 
 ## Functional Coverage
 
-Functional coverage was implemented using SystemVerilog covergroups and Achieved 91.67% functional coverage.
+Functional coverage was collected using SystemVerilog covergroups to ensure protocol activity was exercised across key scenarios.
 
 ### Coverage Points
 
 #### Address Coverage
 
-```text
-VALID ADDRESS = 7'b0101010
-```
+* Valid I2C slave address: `7'b0101010`
 
 #### Operation Coverage
 
-```text
-READ
-WRITE
-```
+* Read
+* Write
 
 #### Data Coverage
 
-```text
-LOW  : 0x00 - 0x3F
-MID  : 0x40 - 0xAF
-HIGH : 0xB0 - 0xFF
-```
+* Low range: `0x00 - 0x3F`
+* Mid range: `0x40 - 0xAF`
+* High range: `0xB0 - 0xFF`
 
 #### Cross Coverage
 
-```text
-ADDRESS × READ/WRITE
-```
+* Address × Read/Write operation
 
-This ensures both read and write operations are exercised for the valid slave address.
-
----
+The coverage report shows full closure for the coverage model, with all variables and cross bins covered. The report also indicates a single simulation test was used to generate the final result.
 
 ## Assertions
 
-SystemVerilog Assertions were implemented to verify protocol behavior.
+SystemVerilog Assertions were implemented to verify protocol-level behavior.
 
-### Reset Check
+### Example Checks
 
-```text
-ENABLE remains LOW during RESET
-```
+* Reset behavior
+* Start condition validation
+* SDA transitions with SCL high
+* ACK-related protocol correctness
 
-### Start Condition Check
+### Assertion Result
 
-```text
-SDA falling edge occurs while SCL is HIGH
-```
-
-Assertion Status:
-
-PASS
-
----
+* PASS
 
 ## Scoreboard
 
-The scoreboard verifies successful data readback from the slave.
+The scoreboard checks that data written to the slave can be read back correctly.
 
-Verification Logic:
+### Verification Logic
 
-```text
-WRITE DATA
+Write data → store expected value → read data → compare expected vs actual
 
-↓
+### Pass Condition
 
-STORE EXPECTED VALUE
-
-↓
-
-READ DATA
-
-↓
-
-COMPARE EXPECTED vs ACTUAL
-```
-
-Pass Condition:
-
-```text
-LAST_WRITE_DATA == READ_DATA
-```
-
----
+Expected data must match the read-back data from the slave.
 
 ## Simulation Results
 
-| Metric | Status |
-|----------|----------|
-| Write Transactions | PASS |
-| Read Transactions | PASS |
-| Assertions | PASS |
-| Scoreboard | PASS |
-| Functional Coverage | PASS |
+| Metric              | Status |
+| ------------------- | ------ |
+| Write Transactions  | PASS   |
+| Read Transactions   | PASS   |
+| Assertions          | PASS   |
+| Scoreboard          | PASS   |
+| Functional Coverage | PASS   |
 
----
+## Source Files
+
+### RTL Design
+
+* `i2c_master.v`
+* `i2c_slave.v`
+
+### Verification
+
+* `i2c_if.sv`
+* `i2c_pkg.sv`
+* `i2c_assertions.sv`
+* `tb_top.sv`
+
+## Tools Used
+
+* Verilog HDL
+* SystemVerilog
+* UVM
+* Synopsys VCS
+* Synopsys DVE
+
+## Result
+
+This project demonstrates a complete I2C design and verification flow, from RTL implementation to a reusable UVM-based verification environment with full coverage closure and protocol validation.
+
 
 ## Synopsys VCS Functional Coverage
 
-<img width="1600" height="835" alt="image" src="https://github.com/user-attachments/assets/3efcf2dd-c8ac-4076-a832-5fb55f95cab4" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/8666c5c3-63f4-44a3-bfc5-74d1f51e64f1" />
 
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/7af378fb-8b5d-4ded-b5d3-418c7f70a326" />
 
 ---
 
-## Synopsys DVE Waveforms
+## Coverage Report
 
-<img width="1600" height="857" alt="image" src="https://github.com/user-attachments/assets/959f6e7c-d5d0-42dd-980c-72f556730b8a" />
-
+<img width="1362" height="624" alt="image" src="https://github.com/user-attachments/assets/852c0cda-2598-4636-8268-9ddd0069e273" />
 
 ---
 
 ## Synthesized design
 
 <img width="1565" height="728" alt="image" src="https://github.com/user-attachments/assets/0a7ba5f7-cedb-4711-8557-7aedbdcf07d8" />
-
----
-
-## Source Files
-
-### RTL Design
-
-- master.v
-- slave.v
-
-### Verification
-
-- i2c_if.sv
-- i2c_transaction.sv
-- i2c_generator.sv
-- i2c_driver.sv
-- i2c_monitor.sv
-- i2c_scoreboard.sv
-- i2c_coverage.sv
-- i2c_assertions.sv
-- tb_i2c_vip.sv
-
----
-
-## Tools Used
-
-- Vivado
-- Synopsys VCS
-- Synopsys DVE
 
 ---
 
