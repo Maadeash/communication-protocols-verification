@@ -113,29 +113,27 @@ The design was implemented using the following tools:
 
 ### Functional Verification 
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/200cc828-78f0-45d0-8e75-43660e64260d" />
+<img width="1600" height="900" alt="WhatsApp Image 2026-08-08 at 10 41 00 AM" src="https://github.com/user-attachments/assets/e14f21ea-9569-4c9e-97c7-805b3866fa4c" />
 
-<img width="1600" height="760" alt="image" src="https://github.com/user-attachments/assets/b5b84b41-7fca-4bb2-b062-25f208dc95fe" />
-
-<img width="1486" height="571" alt="image" src="https://github.com/user-attachments/assets/c83f7045-4ff9-4b57-ad08-f5720c58b705" />
+<img width="1600" height="760" alt="WhatsApp Image 2026-08-08 at 10 41 55 AM" src="https://github.com/user-attachments/assets/204cfe02-4af9-4556-ab8b-043920867553" />
 
 
 ### Synthesis Result
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/4c8ec35c-0349-4a9a-9a30-3c5e4aca5be1" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/2f5ff9d8-8981-4b01-9403-2c203d30c978" />
 
 
 ### Layout / Floorplan
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/a28c7b8c-d522-4269-9827-f1a225cd8595" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/f1eb7b6b-0c9f-445c-af5d-43d03d9eeba3" />
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/33fe5997-a288-467e-9762-4f6b6084bc66" />
-
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/bee9e260-828b-4f7e-8676-93d2f6c7e635" />
 
 
 ### Timing Report
 
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/b8e6c1a8-de8e-4acd-aa6b-6b811a07bda7" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/01c022c2-c50b-445f-a36e-584885fae595" />
+
 
 ### Implementation Outcome
 
